@@ -1,0 +1,20 @@
+<h1 *ngIf="productId === 0" mat-dialog-title>Create product</h1>
+<h1 *ngIf="productId !== 0" mat-dialog-title>Update product</h1>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" name="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select</mat-label>
+      <mat-select formControlName="category" name="category">
+        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button type="submit" [disabled]="!productForm.valid">OK</button>
+    <button mat-button>Cancel</button>
+  </div>
+</form>
